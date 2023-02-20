@@ -23,7 +23,7 @@
     - name: adding existing user chandler to group docker
       user:
         name: chandler
-        groups: dockere
+        groups: docker
         append: yes
 
     - name: copy custom starship file
