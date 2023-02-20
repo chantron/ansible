@@ -20,9 +20,9 @@
           - syncthing
           - docker-compose
 
-    - name: adding existing user '{{ user }}' to group docker
+    - name: adding existing user chandler to group docker
       user:
-        name: '{{ user }}'
+        name: chandler
         groups: dockere
         append: yes
 
