@@ -25,6 +25,12 @@
         owner: chandler
         group: chandler
 
+    - name: Create the fish config directory if it does not exist
+      ansible.builtin.file:
+        path: /home/chandler/.config/fish
+        state: directory
+        mode: '0755'
+
     - name: copy fish config
       copy:
         src: files/fish.config
