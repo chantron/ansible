@@ -7,8 +7,8 @@ home_symbol = "~"
 read_only_style = "bold red"
 
 [character]
-success_symbol = "[➜ ](bold green)"
-error_symbol = "[✗ ](bold red)"
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
 
 [username]
 format = "[$user](blue)[@](39)"
