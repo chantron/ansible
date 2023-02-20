@@ -4,7 +4,7 @@
     become: true
 
     roles:
-      - andrewrothstein.starship
+      # - andrewrothstein.starship -- does not run on raspbian
 
     tasks:
     - name: install packages
@@ -31,6 +31,11 @@
         dest: /home/chandler/.config/fish/fish.config
         owner: chandler
         group: chandler
+
+    - name: Set login shell of user {{ ansible_env.USER }} to `/usr/bin/fish` with `usermod`
+      ansible.builtin.command: usermod --shell /usr/bin/fish {{ ansible_env.USER }}
+      become: true
+      changed_when: false
 
     - name: add ansible user
       user:
