@@ -20,6 +20,12 @@
           - syncthing
           - docker-compose
 
+    - name: adding existing user '{{ user }}' to group docker
+      user:
+        name: '{{ user }}'
+        groups: dockere
+        append: yes
+
     - name: copy custom starship file
       copy:
         src: files/starship.toml
