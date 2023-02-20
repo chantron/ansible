@@ -17,6 +17,8 @@
           - docker.io
           - vim
           - restic
+          - syncthing
+          - docker-compose
 
     - name: copy custom starship file
       copy:
@@ -63,3 +65,9 @@
         minute: "0"
         hour: "0"
         job: ansible-pull -o -U https://github.com/chantron/ansible.git
+
+    - name: Enable syncthing service
+      ansible.builtin.systemd:
+        name: syncthing
+        state: started
+        enabled: true
