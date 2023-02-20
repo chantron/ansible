@@ -1,53 +1,53 @@
- ---
- - hosts: localhost
-   connection: local
-   become: true
+---
+  - hosts: localhost
+    connection: local
+    become: true
 
-  roles:
-    - role: andrewrothstein.starship
+    roles:
+      - andrewrothstein.starship
 
-   tasks:
-   - name: install packages
-     package:
-       name:
-         - htop
-         - neofetch
-         - fish
-         - curl
-         - docker.io
-         - vim
-         - restic
+    tasks:
+    - name: install packages
+      package:
+        name:
+          - htop
+          - neofetch
+          - fish
+          - curl
+          - docker.io
+          - vim
+          - restic
 
-   - name: copy custom starship file
-     copy:
-       src: files/starship.toml
-       dest: /home/chandler/.config/starship.toml
-       owner: chandler
-       group: chandler
+    - name: copy custom starship file
+      copy:
+        src: files/starship.toml
+        dest: /home/chandler/.config/starship.toml
+        owner: chandler
+        group: chandler
 
-   - name: copy fish config
-     copy:
-       src: files/fish.config
-       dest: /home/chandler/.config/fish/fish.config
-       owner: chandler
-       group: chandler
+    - name: copy fish config
+      copy:
+        src: files/fish.config
+        dest: /home/chandler/.config/fish/fish.config
+        owner: chandler
+        group: chandler
 
-   - name: add ansible user
-     user:
-       name: ansiblee
-       system: yes
+    - name: add ansible user
+      user:
+        name: ansiblee
+        system: yes
 
-   - name: set up sudo for ansible user
-     copy:
-       src: files/ansible_sudoer
-       dest: /etc/sudoers.d/ansiblee
-       owner: root
-       group: root
-       mode: 0440
+    - name: set up sudo for ansible user
+      copy:
+        src: files/ansible_sudoer
+        dest: /etc/sudoers.d/ansiblee
+        owner: root
+        group: root
+        mode: 0440
 
-   - name: add ansible-pull cron job
-     cron:
-       name: ansible auto-provision
-       user: ansible
-       minute: "*/10"
-       job: ansible-pull -o -U https://github.com/chantron/ansible.git
+    - name: add ansible-pull cron job
+      cron:
+        name: ansible auto-provision
+        user: ansible
+        minute: "*/10"
+        job: ansible-pull -o -U https://github.com/chantron/ansible.git
