@@ -17,7 +17,7 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format='[$ssh_symbol$hostname](37)($style) '
+format='[$hostname$ssh_symbol](37)($style) '
 
 [git_branch]
 symbol = "git "
