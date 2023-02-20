@@ -45,7 +45,7 @@
 
     - name: add ansible user
       user:
-        name: ansiblee
+        name: ansible
         system: yes
 
     - name: set up sudo for ansible user
