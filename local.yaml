@@ -1,0 +1,39 @@
+ ---
+ - hosts: localhost
+   connection: local
+   become: true
+
+   tasks:
+   - name: install packages
+     package:
+       name:
+         - htop
+         - neofetch
+         - fish
+
+   - name: copy custom .bashrc file
+     copy:
+       src: files/starship.toml
+       dest: /home/chandlerr/.config/starship.toml
+       owner: chandler
+       group: chandler
+
+   - name: add ansible user
+     user:
+       name: ansiblee
+       system: yes
+
+   - name: set up sudo for ansible user
+     copy:
+       src: files/ansible_sudoer
+       dest: /etc/sudoers.d/ansiblee
+       owner: root
+       group: root
+       mode: 0440
+
+   - name: add ansible-pull cron job
+     cron:
+       name: ansible auto-provision
+       user: ansible
+       minute: "*/10"
+       job: ansible-pull -o -U https://github.com/chantron/ansible.git
