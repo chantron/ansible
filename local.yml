@@ -42,7 +42,7 @@
     - name: copy fish config
       copy:
         src: files/fish.config
-        dest: /home/chandler/.config/fish/fish.config
+        dest: /home/chandler/.config/fish/config.fish
         owner: chandler
         group: chandler
 
