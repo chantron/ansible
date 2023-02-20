@@ -38,8 +38,8 @@
         owner: chandler
         group: chandler
 
-    - name: Set login shell of user {{ ansible_env.USER }} to `/usr/bin/fish` with `usermod`
-      ansible.builtin.command: usermod --shell /usr/bin/fish {{ ansible_env.USER }}
+    - name: Set login shell of user chandler to `/usr/bin/fish` with `usermod`
+      ansible.builtin.command: usermod --shell /usr/bin/fish chandler
       become: true
       changed_when: false
 
@@ -60,5 +60,5 @@
       cron:
         name: ansible auto-provision
         user: ansible
-        minute: "*/10"
+        minute: "0 0 * * *"
         job: ansible-pull -o -U https://github.com/chantron/ansible.git
