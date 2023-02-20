@@ -16,6 +16,7 @@
          - curl
          - docker.io
          - vim
+         - restic
 
    - name: copy custom starship file
      copy:
