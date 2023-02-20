@@ -68,6 +68,6 @@
 
     - name: Enable syncthing service
       ansible.builtin.systemd:
-        name: syncthing
+        name: syncthing@myuser.service
         state: started
         enabled: true
