@@ -30,7 +30,7 @@
 
     - name: copy custom starship file
       copy:
-        src: files/starship.toml
+        src: ./files/starship.toml
         dest: /home/chandler/.config/starship.toml
         owner: chandler
         group: chandler
@@ -47,7 +47,7 @@
 
     - name: copy fish config
       copy:
-        src: files/fish.config
+        src: ./files/fish.config
         dest: /home/chandler/.config/fish/config.fish
         owner: chandler
         group: chandler
@@ -68,7 +68,7 @@
 
     - name: set up sudo for ansible user
       copy:
-        src: files/ansible_sudoer
+        src: ./files/ansible_sudoer
         dest: /etc/sudoers.d/ansiblee
         owner: root
         group: root
