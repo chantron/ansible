@@ -52,7 +52,7 @@ show_always = true
 [hostname]
 ssh_only = true
 ssh_symbol = '🌐'
-format='[$ssh_symbol$hostname](33)($style) '
+format='[\[$ssh_symbol$hostname\]](bg:33,fg:black)($style)'
 
 [git_branch]
 symbol = ""

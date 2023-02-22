@@ -31,7 +31,7 @@
     - name: copy custom starship file
       copy:
         src: "{{ playbook_dir }}/files/starship.toml"
-        dest: /home/chandler/.config/starship.toml
+        dest: /home/chandler/.config/starship/starship.toml
         owner: chandler
         group: chandler
       tags:
