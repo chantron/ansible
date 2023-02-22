@@ -47,7 +47,7 @@
 
     - name: copy fish config
       copy:
-        src: "{{ playbook_dir }}/files/fish.config"
+        src: "{{ playbook_dir }}/files/config.fish"
         dest: /home/chandler/.config/fish/config.fish
         owner: chandler
         group: chandler
