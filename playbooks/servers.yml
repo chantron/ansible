@@ -1,6 +1,5 @@
 ---
-  - hosts: localhost
-    connection: local
+  - hosts: servers
     become: true
 
     roles:
@@ -28,10 +27,18 @@
         groups: docker
         append: yes
 
+    - name: Create the starship config directory if it does not exist
+      ansible.builtin.file:
+        path: /home/chandler/.config/starship
+        state: directory
+        mode: '0755'
+      tags:
+        - starship
+
     - name: copy custom starship file
       copy:
-        src: "{{ playbook_dir }}/files/starship.toml"
-        dest: /home/chandler/.config/starship/starship.toml
+        src: "{{ playbook_dir }}/../files/starship.toml"
+        dest: /home/chandler/.config/starship.toml
         owner: chandler
         group: chandler
       tags:
@@ -47,15 +54,15 @@
 
     - name: copy fish config
       copy:
-        src: "{{ playbook_dir }}/files/config.fish"
+        src: "{{ playbook_dir }}/../files/config.fish"
         dest: /home/chandler/.config/fish/config.fish
         owner: chandler
         group: chandler
       tags:
         - fish
 
-    - name: Set login shell of user {{ ansible_env.USER }} to `/usr/bin/fish` with `usermod`
-      ansible.builtin.command: usermod --shell /usr/bin/fish {{ ansible_env.USER }}
+    - name: Set login shell of user {{ ansible_ssh_user }} to `/usr/bin/fish` with `usermod`
+      ansible.builtin.command: usermod --shell /usr/bin/fish {{ ansible_ssh_user }}
       become: true
       changed_when: false
       tags:
@@ -68,7 +75,7 @@
 
     - name: set up sudo for ansible user
       copy:
-        src: "{{ playbook_dir }}/files/ansible_sudoer"
+        src: "{{ playbook_dir }}/../files/ansible_sudoer"
         dest: /etc/sudoers.d/ansiblee
         owner: root
         group: root
